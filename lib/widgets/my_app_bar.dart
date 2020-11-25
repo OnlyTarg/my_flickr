@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_flickr/widgets/ui_picture_search.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
@@ -9,12 +10,11 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Text('Flickr app'),
-      centerTitle: true,
       actions: [
         IconButton(
           icon: Icon(Icons.search),
           onPressed: () {
-            showSearch(context: context, delegate: null);
+            showSearch(context: context, delegate: UIPictureSearch());
           },
         )
       ],
