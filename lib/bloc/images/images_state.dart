@@ -12,9 +12,9 @@ class ImagesInitial extends ImagesState {}
 class ImagesLoading extends ImagesState {}
 
 class ImagesLoaded extends  ImagesState {
-  final List<Images> images;
+  final List<Picture> pictures;
 
-  ImagesLoaded({this.images});
+  ImagesLoaded({this.pictures});
 }
 
 class ImagesListError extends ImagesState {

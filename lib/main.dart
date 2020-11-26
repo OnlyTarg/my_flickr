@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_flickr/screens/main_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:my_flickr/bloc/images/images_bloc.dart';
+import 'package:my_flickr/model/reposit.dart';
+import 'package:my_flickr/screens/search_page.dart';
 
 void main() {
   runApp(
-    /// Providers are above [MyApp] instead of inside it, so that tests
-    /// can use [MyApp] while mocking the providers
     MyApp(),
   );
 }
@@ -18,6 +20,10 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: MainScreen());
+        home: BlocProvider(
+            create: (context) {
+              return ImagesBloc(imagesRepo: ImagesServices());
+            },
+            child: SearchPage()));
   }
 }

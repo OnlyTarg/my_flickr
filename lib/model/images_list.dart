@@ -1,15 +1,12 @@
-// To parse this JSON data, do
-//
-//     final images = imagesFromJson(jsonString);
+
 
 import 'dart:convert';
 
-List<Images> imagesFromJson(String str) => List<Images>.from(json.decode(str).map((x) => Images.fromJson(x)));
+List<Picture> imagesFromJson(String str) => List<Picture>.from(json.decode(str).map((x) => Picture.fromJson(x)));
+String imagesToJson(List<Picture> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-String imagesToJson(List<Images> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
-class Images {
-  Images({
+class Picture {
+  Picture({
     this.id,
     this.owner,
     this.secret,
@@ -19,6 +16,8 @@ class Images {
     this.ispublic,
     this.isfriend,
     this.isfamily,
+    this.oWidth,
+    this.oHeight,
   });
 
   String id;
@@ -30,8 +29,10 @@ class Images {
   int ispublic;
   int isfriend;
   int isfamily;
+  String oWidth;
+  String oHeight;
 
-  factory Images.fromJson(Map<String, dynamic> json) => Images(
+  factory Picture.fromJson(Map<String, dynamic> json) => Picture(
     id: json["id"],
     owner: json["owner"],
     secret: json["secret"],
@@ -41,6 +42,8 @@ class Images {
     ispublic: json["ispublic"],
     isfriend: json["isfriend"],
     isfamily: json["isfamily"],
+    oWidth: json["o_width"] == null ? null : json["o_width"],
+    oHeight: json["o_height"] == null ? null : json["o_height"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -53,5 +56,7 @@ class Images {
     "ispublic": ispublic,
     "isfriend": isfriend,
     "isfamily": isfamily,
+    "o_width": oWidth == null ? null : oWidth,
+    "o_height": oHeight == null ? null : oHeight,
   };
 }
